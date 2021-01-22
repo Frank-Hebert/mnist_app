@@ -3,7 +3,7 @@ import os
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 import tensorflow as tf
 import tensorflow_datasets as tfds
-import tensorflow_addons as tfa
+# import tensorflow_addons as tfa
 import math
 from tensorflow.keras import layers
 from tensorflow import keras
@@ -23,17 +23,17 @@ def normalize_img(image, label):
 
 
 @tf.function
-def rotate(img, max_degrees=25):
-    degrees = tf.random.uniform([], -max_degrees, max_degrees, dtype=tf.float32)
-    img = tfa.image.rotate(img, degrees * math.pi / 180, interpolation="BILINEAR")
-    return img
+# def rotate(img, max_degrees=25):
+#     degrees = tf.random.uniform([], -max_degrees, max_degrees, dtype=tf.float32)
+#     img = tfa.image.rotate(img, degrees * math.pi / 180, interpolation="BILINEAR")
+#     return img
 
 
 @tf.function
 def augment(image, label):
     image = tf.image.resize(image, size=[28, 28])
 
-    image = rotate(image)
+    # image = rotate(image)
     image = tf.image.random_brightness(image, max_delta=0.2)
     image = tf.image.random_contrast(image, lower=0.5, upper=1.5)
 
